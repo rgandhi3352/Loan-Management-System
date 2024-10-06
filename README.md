@@ -28,7 +28,7 @@ The Loan Management System is a Django-based application designed to facilitate 
 - **Django**: Web framework for building the application.
 - **Django REST Framework**: For creating RESTful APIs.
 - **Celery**: For asynchronous task management (credit score calculation).
-- **PostgreSQL**: Database for persisting user and loan data.
+- **SQLite**: Database to store user and loan data.
 - **Pandas**: For processing user transaction data from CSV files.
 
 ## Installation
