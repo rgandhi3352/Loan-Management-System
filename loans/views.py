@@ -127,12 +127,15 @@ class MakePaymentView(APIView):
 
 class GetStatementView(APIView):
     def get(self, request):
-        loan = Loan.objects.get(id=request.query_params['loan_id'])
+        try:
+            loan = Loan.objects.get(id=request.query_params['loan_id'])
+        except Loan.DoesNotExist:
+            raise Http404("Loan not found")
 
         # Fetch past EMIs
         past_emis = EMI.objects.filter(loan=loan, is_paid=True)
         past_transactions = []
-        for emi in paid_emis:
+        for emi in past_emis:
             past_transactions.append({
             'date': emi.due_date,
             'principal': emi.principal_due,
